@@ -81,7 +81,7 @@ export default function AdminMain( props: any) {
           >알림보내기</div>
 
           <div className='AdminMainBtn'
-            onClick={()=>{navigate('/adminbuildins')}}
+            onClick={()=>{navigate('/adminbuildings')}}
           >매물 정보 입력</div>
           
         </div>

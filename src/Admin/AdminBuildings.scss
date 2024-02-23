@@ -1,5 +1,10 @@
+@mixin middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+};
+
 .AdminContainer {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,9 +12,203 @@
   background-color: #faf7f2;
 }
 
-.AdminContent {
+.AdminContent_Buildings {
   flex: 1;
-  margin-top: 200px;
+  margin-top: 150px;
+
+  .register {
+    width: 800px;
+    flex-direction: column;
+    padding-top: 10px;
+    
+    .inputbox {
+      width: 750px;
+      min-height: 50px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      background-color: #EAEAEA;
+      justify-content: space-between;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    
+      .name {
+        width: 100px;
+        @include middle;
+        flex-direction: column;
+      }
+
+      > input {
+        width: 650px;
+        height: 50px;
+        padding: 4px 10px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 5px;
+        color: #777;
+        font-size: 14px;
+        background-color: #fff;
+      }
+      > input::placeholder {
+        font-size: 14px;
+        color: #BDBDBD;
+      }
+    }
+    .inputbox2cover {
+      display: flex;
+    
+      .inputbox2 {
+        width: 375px;
+        min-height: 50px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        background-color: #EAEAEA;
+        justify-content: space-between;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      
+        .name {
+          width: 100px;
+          @include middle;
+          flex-direction: column;
+        }
+
+        > input {
+          width: 275px;
+          height: 50px;
+          padding: 4px 10px;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+          border-radius: 5px;
+          color: #777;
+          font-size: 14px;
+          background-color: #fff;
+        }
+        > input::placeholder {
+          font-size: 14px;
+          color: #BDBDBD;
+        }
+      }
+    }
+
+  }
+  .imageContainer {
+    position: relative;
+    height: 400px;
+    margin-bottom: 100px;
+    @include middle;
+
+    .imageBox {
+      margin: 0 20px;
+
+      .dropzoneStyle {
+        width: 200px;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        border: 2px dashed #BDBDBD;
+        cursor: pointer;
+  
+        div.imageplus {
+          font-size: 30px;
+          color: #333;
+        }
+      };
+      input.checkbox{
+        width: 50px;
+        height: 50px;
+        border: 1px solid #333; 
+      }
+
+      input[type="checkbox"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+      }
+      input[type="checkbox"]::after {
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        content: '';
+        position: relative;
+        height: 50%;
+        left: 50%;
+        top: 20%;
+        transform: rotate(45deg);
+        width: 15%;
+      } 
+      input[type="checkbox"]:checked {
+        background: #1b673c;
+      }
+      input[type="checkbox"]:checked::after {
+        display: block;
+      }   
+
+
+      .imagedelete {
+        width: 70px;
+        height: 30px;
+        border-radius: 10px;
+        border: 1px solid red;
+        font-size: 12px;
+        @include middle;
+        z-index: 9;
+        color: red;
+
+      }
+    };
+    
+  }
+  .imageControlBtn-default {
+    position: absolute;
+    left: 75px;
+    bottom: 10px;
+    width: 100px;
+    height: 30px;
+    border: 1px solid red;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+    @include middle;
+  }
+  .imageControlBtn-default:hover {
+    background-color: #EAEAEA;
+    cursor: pointer;
+  }
+  
+  .buttonbox {
+    width: 400px;
+    height: 100px;
+    left: 0;
+    right: 0;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+
+    .button {
+      width: 150px;
+      height: 40px;
+      background-color: #EAEAEA;
+      border-radius: 10px;
+      margin-left: 20px;
+      margin-right: 20px;
+      @include middle;
+
+      p {
+        font-weight: 700;
+      }
+    }
+    .button:hover {
+      background-color: #8C8C8C;
+      cursor: pointer;
+    }
+  }
 }
 
 

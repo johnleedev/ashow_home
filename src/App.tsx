@@ -10,6 +10,7 @@ import Admin from './Admin/Admin';
 import AdminMain from './Admin/AdminMain';
 import Alert from './Admin/Alert';
 import AdminBuildings from './Admin/AdminBuildings';
+import AdminPyenginfo from './Admin/AdminPyenginfo';
 
 function App() {
   
@@ -26,6 +27,7 @@ function App() {
         <Route path="/adminmain" element={<AdminMain/>}/>
         <Route path="/adminalert" element={<Alert/>}/>
         <Route path="/adminbuildings" element={<AdminBuildings/>}/>
+        <Route path="/adminpyenginfo" element={<AdminPyenginfo/>}/>
       </Routes>
 
     </div>

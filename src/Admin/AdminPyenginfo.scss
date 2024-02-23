@@ -1,0 +1,255 @@
+@mixin middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+};
+
+.AdminContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #faf7f2;
+}
+
+.AdminContent_Pyenginfo {
+  flex: 1;
+  margin-top: 150px;
+
+  .register {
+    width: 1350px;
+    flex-direction: column;
+    padding-top: 10px;
+
+    .cover {
+      display: flex;
+      
+      margin: 20px 0;
+
+      .box1 {
+        width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #333;
+      }
+      .box2 {
+        width: 900px;
+
+        .inputbox {
+          width: 950px;
+          min-height: 50px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          background-color: #EAEAEA;
+          justify-content: space-between;
+          border-radius: 5px;
+          margin-bottom: 10px;
+        
+          .name {
+            width: 100px;
+            @include middle;
+            flex-direction: column;
+          }
+    
+          > input {
+            width: 850px;
+            height: 50px;
+            padding: 4px 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 5px;
+            color: #777;
+            font-size: 14px;
+            background-color: #fff;
+          }
+          > input::placeholder {
+            font-size: 14px;
+            color: #BDBDBD;
+          }
+        }
+        .inputboxcover {
+          display: flex;
+        
+          .inputbox2 {
+            width: 315px;
+            min-height: 50px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            background-color: #EAEAEA;
+            justify-content: space-between;
+            border-radius: 5px;
+            margin-bottom: 10px;
+          
+            .name {
+              width: 100px;
+              @include middle;
+              flex-direction: column;
+            }
+    
+            > input {
+              width: 220px;
+              height: 50px;
+              padding: 4px 10px;
+              border: 1px solid #ccc;
+              box-sizing: border-box;
+              border-radius: 5px;
+              color: #777;
+              font-size: 14px;
+              background-color: #fff;
+            }
+            > input::placeholder {
+              font-size: 14px;
+              color: #BDBDBD;
+            }
+          }
+          .inputbox3 {
+            width: 235px;
+            min-height: 50px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            background-color: #EAEAEA;
+            justify-content: space-between;
+            border-radius: 5px;
+            margin-bottom: 10px;
+          
+            .name {
+              width: 100px;
+              @include middle;
+              flex-direction: column;
+            }
+    
+            > input {
+              width: 135px;
+              height: 50px;
+              padding: 4px 10px;
+              border: 1px solid #ccc;
+              box-sizing: border-box;
+              border-radius: 5px;
+              color: #777;
+              font-size: 14px;
+              background-color: #fff;
+            }
+            > input::placeholder {
+              font-size: 14px;
+              color: #BDBDBD;
+            }
+          }
+        }
+      }
+
+      .box3 {
+        margin-left: 50px;
+        width: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        .boxStyle {
+          width: 250px;
+          height: 350px;
+          border: 2px solid #ccc;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center; 
+          
+          div.imagedelete {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            border: 1px solid red;
+            font-size: 35px;
+            text-align: center;
+            z-index: 9;
+            color: red;
+          }
+        
+          .boxStyle:hover > div.imagedelete{
+            display: block;
+            cursor: pointer;
+          }
+      
+          .dropzoneStyle {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px dashed #aaa;
+            border-radius: 4px;
+            cursor: pointer;
+      
+            div.imageplus {
+              font-size: 30px;
+              color: #333;
+            }
+            
+          };
+        }
+      }
+    }
+  }
+
+  .pyeng-plus-box {
+    width: 250px;
+    @include middle;
+    margin-top: 5px;
+
+    .pyeng-plus-button{
+      width: 40px;
+      height: 40px;
+      margin-left: 5px;
+      @include middle;
+     
+      p {
+        width: 30px;
+        height: 30px;
+        font-size: 24px;
+        @include middle;
+        border: 1px solid #8C8C8C;
+        border-radius: 5px;
+      }
+      p:hover {
+        background-color: #8C8C8C;
+        cursor: pointer;
+      }
+    }
+
+  }
+  
+  .buttonbox {
+    width: 400px;
+    height: 100px;
+    left: 0;
+    right: 0;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+
+    .button {
+      width: 150px;
+      height: 40px;
+      background-color: #EAEAEA;
+      border-radius: 10px;
+      margin-left: 20px;
+      margin-right: 20px;
+      @include middle;
+
+      p {
+        font-weight: 700;
+      }
+    }
+    .button:hover {
+      background-color: #8C8C8C;
+      cursor: pointer;
+    }
+  }
+}
+
+
