@@ -13,19 +13,67 @@
 }
 
 .AdminContent_Pyenginfo {
+  width: 100%;
   flex: 1;
-  margin-top: 150px;
+  margin-top: 90px;
+  max-width: 1800px;
 
-  .register {
-    width: 1350px;
+  > .register.titlebox {
+    max-width: 1800px;
     flex-direction: column;
     padding-top: 10px;
+    overflow-x: scroll;
+    position: fixed;
+    background-color: #faf7f2;
+    z-index: 9;
 
     .cover {
       display: flex;
-      
       margin: 20px 0;
 
+
+      .box1 {
+        width: 100px;
+      }
+      .box2 {
+        width: 1500px;
+
+        .inputbox {
+          width: 1450px;
+
+          > .name {
+            width: 100px;
+            height: 50px;
+            border-right: 1px solid #333;
+            box-sizing: border-box;
+    
+            p {
+              font-size: 14px;
+            }
+          }
+          .cost {
+            width: 150px;
+          }
+        }
+        
+
+      }
+      .box3 {
+        margin-left: 50px;
+        width: 300px;
+      }
+    }
+  }
+
+  .register {
+    flex-direction: column;
+    padding-top: 10px;
+    overflow-x: scroll;
+
+    .cover {
+      display: flex;
+      margin: 20px 0;
+      
       .box1 {
         width: 100px;
         display: flex;
@@ -34,10 +82,39 @@
         border: 1px solid #333;
       }
       .box2 {
-        width: 900px;
+        width: 1500px;
 
         .inputbox {
-          width: 950px;
+          width: 1450px;
+          min-height: 50px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          background-color: #EAEAEA;
+          border-radius: 5px;
+          margin-bottom: 10px;
+
+          > input {
+            width: 100px;
+            height: 50px;
+            padding: 4px 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 5px;
+            color: #777;
+            font-size: 14px;
+            background-color: #fff;
+          }
+          > input::placeholder {
+            font-size: 14px;
+            color: #BDBDBD;
+          }
+          .cost {
+            width: 150px;
+          }
+        }
+        .inputbox2 {
+          width: 1450px;
           min-height: 50px;
           position: relative;
           display: flex;
@@ -52,9 +129,9 @@
             @include middle;
             flex-direction: column;
           }
-    
+  
           > input {
-            width: 850px;
+            width: 1350px;
             height: 50px;
             padding: 4px 10px;
             border: 1px solid #ccc;
@@ -69,76 +146,6 @@
             color: #BDBDBD;
           }
         }
-        .inputboxcover {
-          display: flex;
-        
-          .inputbox2 {
-            width: 315px;
-            min-height: 50px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            background-color: #EAEAEA;
-            justify-content: space-between;
-            border-radius: 5px;
-            margin-bottom: 10px;
-          
-            .name {
-              width: 100px;
-              @include middle;
-              flex-direction: column;
-            }
-    
-            > input {
-              width: 220px;
-              height: 50px;
-              padding: 4px 10px;
-              border: 1px solid #ccc;
-              box-sizing: border-box;
-              border-radius: 5px;
-              color: #777;
-              font-size: 14px;
-              background-color: #fff;
-            }
-            > input::placeholder {
-              font-size: 14px;
-              color: #BDBDBD;
-            }
-          }
-          .inputbox3 {
-            width: 235px;
-            min-height: 50px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            background-color: #EAEAEA;
-            justify-content: space-between;
-            border-radius: 5px;
-            margin-bottom: 10px;
-          
-            .name {
-              width: 100px;
-              @include middle;
-              flex-direction: column;
-            }
-    
-            > input {
-              width: 135px;
-              height: 50px;
-              padding: 4px 10px;
-              border: 1px solid #ccc;
-              box-sizing: border-box;
-              border-radius: 5px;
-              color: #777;
-              font-size: 14px;
-              background-color: #fff;
-            }
-            > input::placeholder {
-              font-size: 14px;
-              color: #BDBDBD;
-            }
-          }
-        }
       }
 
       .box3 {
@@ -149,8 +156,8 @@
         justify-content: center;
     
         .boxStyle {
-          width: 250px;
-          height: 350px;
+          width: 100px;
+          height: 150px;
           border: 2px solid #ccc;
           display: flex;
           flex-direction: column;

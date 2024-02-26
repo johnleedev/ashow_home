@@ -15,33 +15,10 @@ export default function AdminPyenginfo( props: any) {
   
   let navigate = useNavigate();
   const location = useLocation(); 
-  const aptKey = location.state.aptKey;
+  // const aptKey = location.state.aptKey;
+  const aptKey = 1;
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  interface AptInfoProps {
-    aptKey : number;
-    aptName: string;
-    inDate : string;
-    houseHoldSum : number;
-    addressCity : string;
-    addressCounty : string;
-    addressRest : string;
-  }
-
-  let [aptInfo, setAptInfo] = useState<AptInfoProps>();
-
-  // 게시글 가져오기
-  const fetchPosts = async () => {
-    const res = await axios.get(`${MainURL}/buildingsadmin/getaptinfo/${aptKey}`)
-    if (res) {
-      setAptInfo(res.data);
-    }
-  };
-
-  useEffect(() => {
-    fetchPosts();
-  }, []);
 
 
   // 평형 정보 입력 박스 ----------------------------------------------------------------------------------------------
@@ -76,7 +53,7 @@ export default function AdminPyenginfo( props: any) {
     [
       {
         imageFiles: [],
-        mainType: '',
+        mainType: 'false',
       pyengName : '',
       pyengNum : '',
       pyengKey : '',
@@ -106,7 +83,7 @@ export default function AdminPyenginfo( props: any) {
     setPyenginfoInputs([...pyenginfoInputs, 
       { 
         imageFiles: [],
-        mainType: '',
+        mainType: 'false',
         pyengName : '',
         pyengNum : '',
         pyengKey : '',
@@ -175,11 +152,11 @@ export default function AdminPyenginfo( props: any) {
         formData,
         getParams: {
           aptKey : aptKey,
-          aptName: aptInfo?.aptName, 
-          inDate: aptInfo?.inDate, 
-          addressCity: aptInfo?.addressCity, 
-          addressCounty: aptInfo?.addressCounty, 
-          houseHoldSum: aptInfo?.houseHoldSum,
+          aptName: location.state.aptName, 
+          inDate: location.state.inDate, 
+          addressCity: location.state.addressCity, 
+          addressCounty: location.state.addressCounty, 
+          houseHoldSum: location.state.houseHoldSum,
           mainType: pyenginfo.mainType,
           pyengName : pyenginfo.pyengName,
           pyengNum : pyenginfo.pyengName,
@@ -229,6 +206,7 @@ export default function AdminPyenginfo( props: any) {
     }
   };
 
+
   return isLoading
     ? (
     <div style={{flex:1, width:'100%', height:'80vh'}}>
@@ -240,252 +218,248 @@ export default function AdminPyenginfo( props: any) {
       <Header/>
      
       <div  className="AdminContent_Pyenginfo">
+       
+        <div className="register titlebox">
+
+          <p>아파트키{aptKey}</p>
+
+          <div className="cover">
+            <div className="box1">
+              <p>제목</p>
+            </div>
+            <div className="box2">
+              <div className="inputbox">
+                <div className='name'>
+                  <p>평형키</p>
+                </div> 
+                <div className='name'>
+                  <p>메인타입유무</p>
+                </div> 
+                <div className='name'>
+                  <p>평형이름</p>
+                </div> 
+                <div className='name'>
+                  <p>평형(숫자)</p>
+                </div> 
+                <div className='name'>
+                  <p>세대수(평형별)</p>
+                </div> 
+                <div className='name'>
+                  <p>공급면적</p>
+                </div> 
+                <div className='name'>
+                  <p>전용면적(N)</p>
+                </div> 
+                <div className='name'>
+                  <p>전용면적(T)</p>
+                </div> 
+                <div className='name cost'>
+                  <p>공급가(최고)</p>
+                </div> 
+                <div className='name cost'>
+                  <p>공급가(최저)</p>
+                </div> 
+                <div className='name'>
+                  <p>평형별(색상)</p>
+                </div> 
+                <div className='name'>
+                  <p>마이너스옵션</p>
+                </div> 
+                <div className='name'>
+                  <p>발코니확장비</p>
+                </div> 
+              </div>
+              <div className="inputbox">
+                <div className='name'>
+                  <p>할인가(최고)</p>
+                </div> 
+                <div className='name'>
+                  <p>할인가(최저)</p>
+                </div> 
+                <div className='name'>
+                  <p>아쇼(축하)</p>
+                </div> 
+                <div className='name'>
+                  <p>아쇼(첫계약)</p>
+                </div> 
+                <div className='name'>
+                  <p>할인가(멤버)</p>
+                </div> 
+                <div className='name'>
+                  <p>할인가(투데이)</p>
+                </div> 
+                <div className='name'>
+                  <p>아쇼혜택합계</p>
+                </div> 
+              </div>
+            </div> 
+            
+            <div className="box3">
+              <div className="inputbox2">
+                <div className='name'>
+                  <p>사진</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style={{height:'250px'}}></div>
         
         <div className="register">
-        <p>아파트키{aptKey}</p>
         {pyenginfoInputs?.map((item, index)=>{
         return (
+          <>
           <div className="cover">
             <div className="box1">
               <p>평형{index+1}</p>
             </div>
             <div className="box2">
-              <div className="inputboxcover">
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>평형키</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].pyengKey} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].pyengKey = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>메인타입유무</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].mainType} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].mainType = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>평형이름</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].pyengName} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].pyengName = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>평형(숫자)</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].pyengNum} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].pyengNum = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-              </div>
-
-              <div className="inputboxcover">
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>세대수(평형별)</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].houseHold} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].houseHold = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>공급면적</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].officialArea} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].officialArea = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>전용면적(N)</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].personalArea} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].personalArea = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>전용면적(T)</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].personalAreaText} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].personalAreaText = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-              </div>
-
-              <div className="inputboxcover">
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>공급가(최고)</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].priceDefaultHigh} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].priceDefaultHigh = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>공급가(최저)</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].priceDefaultLow}  
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].priceDefaultLow = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>할인가(최고)</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].discountHigh} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].discountHigh = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>할인가(최저)</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].discountLow} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].discountLow = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-              </div>
-
-              <div className="inputboxcover">
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>아쇼(축하)</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].ashowDiscountGriting} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].ashowDiscountGriting = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>아쇼(첫계약)</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].ashowDiscountFirstUse} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].ashowDiscountFirstUse = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>할인가(멤버)</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].ashowDiscountMember} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].ashowDiscountMember = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>할인가(투데이)</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].ashowDiscountToday} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].ashowDiscountToday = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-              </div>
-
-              <div className="inputboxcover">
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>아쇼혜택합계</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].ashowDiscountSum} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].ashowDiscountSum = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>평형별(색상)</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].keyColor} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].keyColor = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>마이너스옵션</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].minusOption} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].minusOption = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
-                <div className="inputbox3">
-                  <div className='name'>
-                    <p>발코니확장비</p>
-                  </div>
-                  <input type="text" value={pyenginfoInputs[index].extendOption} 
-                    onChange={(e)=>{
-                      const inputs = [...pyenginfoInputs];
-                      inputs[index].extendOption = e.target.value;
-                      setPyenginfoInputs(inputs);
-                    }} />
-                </div>
+              <div className="inputbox">
+                {/* 평형키*/}
+                <input type="text" value={index+1} />
+                {/* 메인타입유무*/}
+                <input type="text" value={pyenginfoInputs[index].mainType} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].mainType = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 평형이름*/}
+                <input type="text" value={pyenginfoInputs[index].pyengName} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].pyengName = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 평형(숫자)*/}
+                <input type="text" value={pyenginfoInputs[index].pyengNum} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].pyengNum = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 세대수(평형별)*/}
+                <input type="text" value={pyenginfoInputs[index].houseHold} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].houseHold = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 공급면적*/}
+                <input type="text" value={pyenginfoInputs[index].officialArea} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].officialArea = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 전용면적(N)*/}
+                <input type="text" value={pyenginfoInputs[index].personalArea} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].personalArea = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 전용면적(T)*/}
+                <input type="text" value={pyenginfoInputs[index].personalAreaText} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].personalAreaText = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 공급가(최고)*/}
+                <input type="text" value={pyenginfoInputs[index].priceDefaultHigh} 
+                  className=' cost'
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].priceDefaultHigh = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 공급가(최저)*/}
+                <input type="text" value={pyenginfoInputs[index].priceDefaultLow}  
+                  className=' cost'
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].priceDefaultLow = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 평형별(색상)*/}
+                <input type="text" value={pyenginfoInputs[index].keyColor} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].keyColor = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 마이너스옵션*/}
+                <input type="text" value={pyenginfoInputs[index].minusOption} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].minusOption = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 발코니확장비*/}
+                <input type="text" value={pyenginfoInputs[index].extendOption} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].extendOption = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
               </div>
 
               <div className="inputbox">
+                {/* 할인가(최고)*/}
+                <input type="text" value={pyenginfoInputs[index].discountHigh} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].discountHigh = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 할인가(최저)*/}
+                <input type="text" value={pyenginfoInputs[index].discountLow} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].discountLow = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 아쇼(축하)*/}
+                <input type="text" value={pyenginfoInputs[index].ashowDiscountGriting} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].ashowDiscountGriting = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 아쇼(첫계약)*/}
+                <input type="text" value={pyenginfoInputs[index].ashowDiscountFirstUse} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].ashowDiscountFirstUse = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 할인가(멤버)*/}
+                <input type="text" value={pyenginfoInputs[index].ashowDiscountMember} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].ashowDiscountMember = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 할인가(투데이)*/}
+                <input type="text" value={pyenginfoInputs[index].ashowDiscountToday} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].ashowDiscountToday = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+                {/* 아쇼혜택합계*/}
+                <input type="text" value={pyenginfoInputs[index].ashowDiscountSum} 
+                  onChange={(e)=>{
+                    const inputs = [...pyenginfoInputs];
+                    inputs[index].ashowDiscountSum = e.target.value;
+                    setPyenginfoInputs(inputs);
+                  }} />
+              </div>
+
+              <div className="inputbox2">
                 <div className='name'>
                   <p>아파트소개</p>
                 </div>
@@ -535,6 +509,8 @@ export default function AdminPyenginfo( props: any) {
               </div>
             </div>
           </div>
+          <div style={{width:'100%', height:'2px', backgroundColor:'#BDBDBD'}}></div>
+          </>
           )
         })}
 

@@ -94,12 +94,13 @@ export default function AdminBuildings( props: any) {
     { file: new File([], ""), name: "조감도" },
     { file: new File([], ""), name: "입지환경" },
     { file: new File([], ""), name: "동호수배치도" },
+    { file: new File([], ""), name: "단지배치도" },
     { file: new File([], ""), name: "커뮤니티1" },
     { file: new File([], ""), name: "커뮤니티2" }
   ]);
        
   const onDrop = useCallback(async (acceptedFiles: File[], index:number) => {
-    const imagesName = ["3dview1", "3dview2", "airview", "environment", "arrangehouse", "community1", "community2"]
+    const imagesName = ["3dview1", "3dview2", "airview", "environment", "arrangehouse", "arrangebuilding", "community1", "community2"]
     try {
       const options = {
         maxSizeMB: 1,
@@ -130,6 +131,7 @@ export default function AdminBuildings( props: any) {
     {name_ko:"조감도", name: "airview"},
     {name_ko:"입지환경", name: "environment"},
     {name_ko:"동호수배치도", name: "arrangehouse"},
+    {name_ko:"단지배치도", name: "arrangebuilding"},
   ]
   const communityImagesSaveNamesOrigin = ["community1", "community2"]
 
@@ -142,7 +144,7 @@ export default function AdminBuildings( props: any) {
   const [communityImagesSaveNames, setCommunityImagesSaveNames] = useState<string[]>([]);
 
   const handleImageChecked = (Idx:number) => {
-    if (Idx < 5 ) {
+    if (Idx < 6 ) {
       const copy = [...imagesSaveNames]
       copy[Idx] = imagesSaveNamesOrigin[Idx];
       setImagesSaveNames(copy);
@@ -159,7 +161,7 @@ export default function AdminBuildings( props: any) {
   // ---------------------------------------------------------------
   // 정보 입력하기
   const registerPost = async () => {
-    setIsLoading(true);
+    await setIsLoading(true);
     const formData = new FormData();
     images.forEach((image, index) => {
       formData.append('img', image.file);
@@ -189,7 +191,15 @@ export default function AdminBuildings( props: any) {
       .then((res) => {
         if (res.data.success === true) {
           alert('입력되었습니다.');
-          navigate('/adminpyenginfo', {state : { aptKey : res.data.aptKey}}); 
+          navigate('/adminpyenginfo', {state : 
+            { 
+              aptKey : res.data.aptKey,
+              aptName: aptName,
+              inDate : inDate,
+              houseHoldSum : houseHoldSum,
+              addressCity : addressCity,
+              addressCounty : addressCounty,
+            }}); 
         } else {
           alert(res.data);
         }
@@ -428,6 +438,7 @@ export default function AdminBuildings( props: any) {
           </div>
 
           <div style={{width:'90%', height:'10px', backgroundColor:'#EAEAEA', margin: '10px'}}></div>
+          <p>커뮤니티</p>
           {community.map((item:any, index:any) => {
             return (
               <>
