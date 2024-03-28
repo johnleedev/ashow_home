@@ -11,6 +11,8 @@ import AdminMain from './Admin/AdminMain';
 import Alert from './Admin/Alert';
 import AdminBuildings from './Admin/AdminBuildings';
 import AdminPyenginfo from './Admin/AdminPyenginfo';
+import AdminGetBuildingsInfo from './Admin/AdminGetBuildingsInfo';
+import AdminGetPyengInfo from './Admin/AdminGetPyengInfo';
 
 function App() {
   
@@ -28,6 +30,8 @@ function App() {
         <Route path="/adminalert" element={<Alert/>}/>
         <Route path="/adminbuildings" element={<AdminBuildings/>}/>
         <Route path="/adminpyenginfo" element={<AdminPyenginfo/>}/>
+        <Route path="/admingetbuildingsinfo" element={<AdminGetBuildingsInfo/>}/>
+        <Route path="/admingetpyenginfo" element={<AdminGetPyengInfo/>}/>
       </Routes>
 
     </div>

@@ -209,6 +209,17 @@ export default function AdminBuildings( props: any) {
       })
   };
 
+
+    // 게시글 가져오기
+  const test = async () => {
+    const res = await axios.post(`${MainURL}/buildingsadmin/test`)
+    if (res) {
+      let copy: any = [...res.data];
+
+    }
+  };
+  
+
   return isLoading
     ? (
     <div style={{flex:1, width:'100%', height:'80vh'}}>
@@ -551,6 +562,10 @@ export default function AdminBuildings( props: any) {
             </div>
             <div className="button" onClick={registerPost}>
               <p>작성 완료</p>
+            </div>
+
+            <div className="button" onClick={test}>
+              <p>테스트</p>
             </div>
           </div>
 

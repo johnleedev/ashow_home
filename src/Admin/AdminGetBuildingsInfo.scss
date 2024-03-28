@@ -1,0 +1,67 @@
+@mixin middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+};
+
+.AdminContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #faf7f2;
+}
+
+.AdminContent_BuildingsInfo {
+  min-height: 100vh;
+  padding-top: 150px;
+  padding-bottom: 100px;
+
+  .row {
+    border: 1px solid #EAEAEA;
+    display: flex;
+    padding: 5px 20px;
+    
+    p {
+      margin: 10px 10px;
+    }
+    .aptName {
+      width: 250px;
+    }
+    .subrow {
+      margin: 0px 10px;
+    }
+  }
+  .row:hover {
+    background-color: #EAEAEA;
+    cursor: pointer;
+  }
+
+  .buttonbox {
+    width: 400px;
+    height: 100px;
+    left: 0;
+    right: 0;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+
+    .button {
+      width: 150px;
+      height: 40px;
+      background-color: #EAEAEA;
+      border-radius: 10px;
+      margin-left: 20px;
+      margin-right: 20px;
+      @include middle;
+
+      p {
+        font-weight: 700;
+      }
+    }
+    .button:hover {
+      background-color: #8C8C8C;
+      cursor: pointer;
+    }
+  }
+}
